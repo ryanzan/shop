@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Find The Hospital</title>
+    <title>SRS</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
@@ -58,12 +58,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Find The Hospital </a>
+            <a class="navbar-brand" href="/">SRS</a>
         </div>
         <ul class="nav navbar-nav pull-right">
-            <a role="button" href="/logout" class="btn btn-default navbar-btn">
-                <i class="fa fa-sign-out" aria-hidden="true"></i></span>
-                &nbsp;Sign out</a>
+            <form method="post" action="/logout">
+                {!! csrf_field() !!}
+                <button  type="submit" class="btn btn-default navbar-btn">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i></span>
+                    &nbsp;Sign out</button>
+            </form>
         </ul>
         <!--  </div> -->
     </div>
@@ -84,18 +87,18 @@
                     <div class="collapse navbar-collapse" id="myNavbar">
                         <ul class="nav navbar-nav">
                             <li class="sidebar-brand">
-                                <a href="/hospital">
-                                    {{@$hospital->name}}
+                                <a href="/shop">
+                                    {{@$shop->name}}
                                 </a>
                             </li>
                             <li>
-                                <a href="/hospital/configuration">Configuration</a>
+                                <a href="/shop/configurations">Configuration</a>
                             </li>
                             {{--<li>--}}
                                 {{--<a href="#">Dashboard</a>--}}
                             {{--</li>--}}
                             <li>
-                                <a href="/hospital/doctor">Doctors</a>
+                                <a href="/shop/clothes">Clothes</a>
                             </li>
                             {{--<li>--}}
                                 {{--<a href="#">Facilities</a>--}}

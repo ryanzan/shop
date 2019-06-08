@@ -1,4 +1,4 @@
-@extends('layouts.hospital-layout')
+@extends('layouts.shop-layout')
 
 @section('content')
                 <div class="row">
@@ -6,13 +6,13 @@
                         <div class="col-lg-12">
                             <h3><u>Basic Information about the Hospital</u></h3>
                         </div>
-                        <form class="form" action="/hospital/configuration/store" method="POST">
+                        <form class="form" action="/shop/configurations/store" method="POST">
                             {{ csrf_field() }}
                             <input hidden id="latitude" name="latitude">
                             <input hidden id="longitude" name="longitude">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="name">Hospital's Name </label>
+                                    <label for="name">Shop's Name </label>
                                     <input type="text" name="name" class="form-control"
                                            value="{{@$configuration->name}}">
                                 </div>
@@ -25,19 +25,14 @@
                                     </a>
                                 </div>
                                 <div class="form-group">
-                                    <label for="contact_no">Contact Number </label>
-                                    <input type="text" name="contact_no" class="form-control"
-                                           value="{{@$configuration->contact_no}}">
+                                    <label for="contact_no">Phone Number </label>
+                                    <input type="text" name="phone_number" class="form-control"
+                                           value="{{@$configuration->phone_number}}">
                                 </div>
                                 <div class="form-group">
                                     <label for="website">Website </label>
                                     <input type="text" name="website" class="form-control"
                                            value="{{@$configuration->website}}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="beds_no">Ambulance Contact Number</label>
-                                    <input type="text" name="ambulance_no" class="form-control"
-                                           value="{{@$configuration->ambulance_no}}">
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -50,16 +45,6 @@
                                     <label for="email">Address</label>
                                     <input type="text" id="location" name="address" class="form-control"
                                            value="{{@$configuration->address}}" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label for="beds_no">Total Number of Beds</label>
-                                    <input type="text" name="beds_no" class="form-control"
-                                           value="{{@$configuration->beds_no}}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="beds_no">Emergency Contact Number</label>
-                                    <input type="text" name="emergency_no" class="form-control"
-                                           value="{{@$configuration->emergency_no}}">
                                 </div>
                             </div>
                             <div class="col-lg-12">

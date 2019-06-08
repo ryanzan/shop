@@ -60,9 +60,12 @@
             <a class="navbar-brand" href="/">SRS </a>
         </div>
         <ul class="nav navbar-nav pull-right">
-            <a role="button" href="/logout" class="btn btn-default navbar-btn">
+            <form method="post" action="/logout">
+                {!! csrf_field() !!}
+            <button  type="submit" class="btn btn-default navbar-btn">
                 <i class="fa fa-sign-out" aria-hidden="true"></i></span>
-                &nbsp;Sign out</a>
+                &nbsp;Sign out</button>
+            </form>
         </ul>
         <!--  </div> -->
     </div>

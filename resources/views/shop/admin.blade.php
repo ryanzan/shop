@@ -16,7 +16,7 @@
     {{--<!--<script src="../bootstrap/js/bootstrap.min.js"></script>-->--}}
 {{--</head>--}}
 {{--<body>--}}
-@extends('layouts.hospital-layout')
+@extends('layouts.shop-layout')
 
 @section('content')
 

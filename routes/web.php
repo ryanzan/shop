@@ -30,3 +30,14 @@ Route::group(['middleware' => ['auth', 'role:administrator']], function () {
     Route::resource('/admin/shops','Admin\ShopsController');
 
 });
+Route::group(['middleware' => ['auth', 'role:shop']], function () {
+
+    Route::get('/shop', function () {
+        return view('shop.admin');
+    });
+
+    Route::get('/shop/configurations','Shop\ConfigurationsController@getIndex');
+    Route::get('/shop/configurations/edit','Shop\ConfigurationsController@getEdit');
+    Route::post('/shop/configurations/store','Shop\ConfigurationsController@postStore');
+
+});
