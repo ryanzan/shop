@@ -36,6 +36,8 @@ class CreateClothesTable extends Migration
             $table->string('age_group')->nullable();
             $table->string('color')->nullable();
             $table->string('price')->nullable();
+            $table->string('size')->nullable();
+
             $table->string('material')->nullable();
 
             $table->string('image')->nullable();

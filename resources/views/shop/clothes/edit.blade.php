@@ -74,6 +74,15 @@
                                     </span>
                         @enderror
                     </div>
+                    <div class="form-group">
+                        <label>Size</label>
+                        <select class="form-control" name="size">
+                            @foreach($sizes as $size)
+                                <option
+                                    value="{{$size}}" {{$clothes->size ==$size ? 'selected' : ''}}>{{$size}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">

@@ -30,6 +30,8 @@ class ClothesController extends Controller
         $data['types'] = ClothesType::all();
         $data['genders'] = ['male', 'female'];
         $data['ages'] = ['children', 'young', 'adult', 'old'];
+        $data['sizes'] = ['S','M','L','XL','XXL','XXXL'];
+
 
         return view('shop.clothes.create', $data);
     }
@@ -62,6 +64,7 @@ class ClothesController extends Controller
         $data['types'] = ClothesType::all();
         $data['genders'] = ['male', 'female'];
         $data['ages'] = ['children', 'young', 'adult', 'old'];
+        $data['sizes'] = ['S','M','L','XL','XXL','XXXL'];
         $data['clothes'] = Clothes::findorfail($id);
         return view('shop.clothes.edit',$data);
 
