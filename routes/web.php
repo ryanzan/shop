@@ -12,6 +12,8 @@
 */
 
 Route::get('/', 'Front\HomepageController@index');
+Route::post('/search', 'Front\HomepageController@search');
+
 
 Auth::routes();
 

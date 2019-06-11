@@ -10,7 +10,11 @@
     <title>CSRS</title>
     <link rel="stylesheet" href="/front/css/homepage.css">
 
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript"
+            src='https://maps.google.com/maps/api/js?key=AIzaSyCtvuvt8CfExKZyli98d4FUeoQtQLGySyU&libraries=places'></script>
+    <script src="/assets/location-picker/locationpicker.jquery.js"></script>
 </head>
 
 <body>
@@ -29,84 +33,93 @@
 <div class="container">
 
 
-    <div class="row">
+    <div class="row" style="background-color: white; padding: 10px;">
 
-        <form class="form">
+        <form class="form" method="post" action="/search">
+            {!! csrf_field() !!}
+            <input hidden id="latitude" name="latitude">
+            <input hidden id="longitude" name="longitude">
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="sel1">Clothes Type</label>
-                    <select class="form-control " id="sel1">
-                        <option>T-shirt</option>
-                        <option>Paint</option>
-                        <option>Shirt</option>
-                        <option>Sweater</option>
-                        <option>Jacket</option>
-
-
+                    <select class="form-control " id="sel1" name="type">
+                        @if($types)
+                            @foreach($types as $type)
+                                <option value="{{$type->id}}">{{@$type->name}}</option>
+                            @endforeach
+                        @endif
                     </select>
                 </div>
 
                 <div class="form-group col-md-6">
                     <label for="sel1">Price</label>
-                    <select class="form-control " id="sel1">
-                        <option>0-500</option>
-                        <option>500-1000</option>
-                        <option>1000-1500</option>
-                        <option>1500-2000</option>
-                        <option>2000-2500</option>
-                        <option>2500-3000</option>
+                    <select class="form-control " id="sel1" name="price">
+                        <option value="c">below 1000</option>
+                        <option value="m">1000-5000</option>
+                        <option value="e">above 5000</option>
                     </select>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="sel1">Age Group</label>
-                    <select class="form-control " id="sel1">
-                        <option>kids</option>
-                        <option>Teen</option>
-                        <option>Adult</option>
-                        <option>Young</option>
-                        <option>Old</option>
-
+                    <select class="form-control" name="age_group">
+                        @foreach($ages as $age)
+                            <option value="{{$age}}">{{$age}}</option>
+                        @endforeach
                     </select>
                 </div>
 
-                <div class="form-group col-md-6">
-                    <label for="sel1">Material</label>
-                    <select class="form-control  " id="sel1">
-                        <option>Cotton</option>
-                        <option>Nylon</option>
-                        <option>Jeans</option>
-                        <option>polyester</option>
-                        <option>ciffon</option>
-                        <option>silk</option>
-
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <label for="sel1">Size</label>
-                    <select class="form-control" id="sel1">
-                        <option>XXXL</option>
-                        <option>XXL</option>
-                        <option>XL</option>
-                        <option>L</option>
-                        <option>M</option>
-                        <option>S</option>
-
-                    </select>
-                </div>
                 <div class="form-group col-md-6">
                     <label>Gender</label>
-                    <br>
-                    <input type="radio" name="gender">Male &nbsp; &nbsp;
-                    <input type="radio" name="gender">female
+                    <select class="form-control" name="gender">
+                        @foreach($genders as $gender)
+                            <option value="{{$gender}}">{{$gender}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-6">
-                    <button class="btn btn-primary btn-block">Search</button>
+                    <label>Size</label>
+                    <select class="form-control" name="size">
+                        @foreach($sizes as $size)
+                            <option value="{{$size}}">{{$size}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Color</label>
+                    <input type="text" name="color" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label>Material</label>
+                    <input type="text" name="material" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="name">Please click the button below to get your location </label> <br>
+                    <a role="button" data-target="#us6-dialog" data-toggle="modal"
+                       class="btn btn-primary btn-md " name="location"
+                       style="height:35px; font-size:15px;">Get your
+                        location
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="email">Your Location</label>
+                        <input type="text" id="location" name="address" class="form-control"
+                               readonly>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary btn-block">Search</button>
                 </div>
             </div>
         </form>
@@ -137,3 +150,5 @@
 </body>
 
 </html>
+@include('partials.map-api')
+
