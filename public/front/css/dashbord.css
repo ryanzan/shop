@@ -1,0 +1,11 @@
+.list-group-item{
+    border: none;
+}
+
+.side-nav{
+    height:600px;
+    margin-top: -20px;   
+    padding: 0;
+    border: 1px solid whitesmoke;
+    background-color: whitesmoke;
+}

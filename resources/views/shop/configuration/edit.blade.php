@@ -6,7 +6,7 @@
                         <div class="col-lg-12">
                             <h3><u>Basic Information about the Hospital</u></h3>
                         </div>
-                        <form class="form" action="/shop/configurations/store" method="POST">
+                        <form class="form" action="/shop/configurations/store" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <input hidden id="latitude" name="latitude">
                             <input hidden id="longitude" name="longitude">
@@ -45,6 +45,11 @@
                                     <label for="email">Address</label>
                                     <input type="text" id="location" name="address" class="form-control"
                                            value="{{@$configuration->address}}" readonly>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Image </label>
+                                    <input type="file" id="location" name="image" >
                                 </div>
                             </div>
                             <div class="col-lg-12">

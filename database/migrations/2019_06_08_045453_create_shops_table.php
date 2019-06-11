@@ -28,6 +28,7 @@ class CreateShopsTable extends Migration
             $table->string('phone_number')->nullable();
             $table->text('website')->nullable();
             $table->string('email')->nullable();
+            $table->string('image')->nullable();
             $table->string('longitude')->nullable();
             $table->string('latitude')->nullable();
 

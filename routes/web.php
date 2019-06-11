@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Front\HomepageController@index');
 
 Auth::routes();
 
@@ -39,5 +37,8 @@ Route::group(['middleware' => ['auth', 'role:shop']], function () {
     Route::get('/shop/configurations','Shop\ConfigurationsController@getIndex');
     Route::get('/shop/configurations/edit','Shop\ConfigurationsController@getEdit');
     Route::post('/shop/configurations/store','Shop\ConfigurationsController@postStore');
+
+
+    Route::resource('/shop/clothes', 'Shop\ClothesController');
 
 });
