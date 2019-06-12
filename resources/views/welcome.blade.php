@@ -98,6 +98,14 @@
                     <label>Material</label>
                     <input type="text" name="material" class="form-control">
                 </div>
+                <div class="col-md-6">
+                    <label>Within</label>
+                    <select class="form-control" name="within" id="within">
+                        <option value="1">---Within 1 KM---</option>
+                        <option value="5">---Within 5 KM---</option>
+                        <option value="10">---Within 10 KM---</option>
+                    </select>
+                </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-6">
@@ -120,6 +128,17 @@
             <div class="row">
                 <div class="col-md-12">
                     <button type="submit" class="btn btn-primary btn-block">Search</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+
+                        @if(Session::has('message'))
+                            <div class="alert alert-danger dismissible">
+                                {{Session::get('message')}}
+                            </div>
+                        @endif
+
                 </div>
             </div>
         </form>

@@ -1,95 +1,131 @@
-@extends('layouts.master')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
-    <div class="col-md-6" style="background-color: whitesmoke;">
-        <h3>Hospitals according to your query </h3>
-        <div class="panel-group">
-            @if(@$finalHospitals)
-                @foreach(@$finalHospitals as $hospital)
-            <div class="panel panel-primary">
-                <div class="panel-heading">{{@$hospital->name}}</div>
-                <div class="panel-body">
-                    <table class="table table-striped table-bordered table-responsive">
-                        <tbody>
-                        <tr>
-                            <td><i class="fa fa-address-card" aria-hidden="true"></i>&nbsp;Address </td>
-                            <td>{{@$hospital->address}}</td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;Contact No. </td>
-                            <td>{{@$hospital->contact_no}}</td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp;Email</td>
-                            <td>{{@$hospital->email}}</td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa fa-globe" aria-hidden="true"></i>&nbsp;Web site </td>
-                            <td>{{@$hospital->website}}</td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa fa-user-md" aria-hidden="true"></i>&nbsp;Avialable Doctors</td>
-                            <td><a href="/results/hospital?id={{@$hospital->id}}&disease={{@$searchedFor}}">
-                                    Click here</a> to see available doctors according to your disease. </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <p class="text-success" style="font-family: sans-serif; font-weight: bolder; font-size: 14px;">
-                        <i class="fa fa-info-circle" aria-hidden="true"></i>
-                        Matches <b><u>{{number_format(@$hospital->cosine,3)}}% </u></b> of your query. </p>
-                </div>
-            </div>
-                @endforeach
-                @else
-                    <p class="alert-warning">No hospitals found according to your query</p>
-            @endif
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" media="screen"
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <title>CRS</title>
+    <link rel="stylesheet" href="/front/css/result.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <!--  -->
+
+    <style>
+
+    </style>
+
+</head>
+
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand " href="#">CSRS</a>
         </div>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
     </div>
-    <div class="col-md-6" style="background-color: white;">
-        <h3> Hospitals Near you </h3>
-        <div class="panel-group">
-            @if(@$nearerHospitals)
+</nav>
 
-                @foreach(@$nearerHospitals as $key=>$item)
 
-            <div class="panel panel-info">
-                <div class="panel-heading">{{@$item->name}}</div>
-                <div class="panel-body">
-                    <table class="table table-striped table-bordered table-responsive">
-                        <tbody>
-                        <tr>
-                            <td><i class="fa fa-address-card" aria-hidden="true"></i>&nbsp;Address </td>
-                            <td>{{@$item->address}}</td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;Contact No. </td>
-                            <td>{{@$item->contact_no}}</td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp;Email</td>
-                            <td>{{@$item->email}}</td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa fa-globe" aria-hidden="true"></i>&nbsp;Web site </td>
-                            <td>{{@$item->website}}</td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa fa-user-md" aria-hidden="true"></i>&nbsp;Avialable Doctors</td>
-                            <td><a href="/results/hospital?id={{@$item->id}}&disease={{@$searchedFor}}">Click here</a> to see available doctors according to your disease. </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <p class="text-success" style="font-family: sans-serif; font-weight: bolder; font-size: 14px;">
-                        <i class="fa fa-info-circle" aria-hidden="true"></i>
-                        Less than <b><u>{{@$key}} KM</u></b> away.</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Shop According To Your Query</h3>
+            @if($finalShops)
+            @foreach($finalShops as $shop)
+                <div class="panel panel-primary">
+                    <div class="panel-heading text-center">
+                        {{$shop->name}}
+                    </div>
+                    <div class="panel-body text-center">
+                        <table class="table table-bordered text-left">
+
+                            <tbody>
+                            <tr>
+                                <td><i class="fas fa-address-card"></i> Address</td>
+                                <td>{{$shop->address}}</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-phone-volume"></i> Contact NO</td>
+                                <td>{{$shop->phone_number}}</td>
+
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-envelope-open"></i> Email</td>
+                                <td>{{$shop->email}}</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-globe-americas"></i> Websites</td>
+                                <td>{{$shop->website}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <p class="text-success" style="font-family: sans-serif; font-weight: bolder; font-size: 14px;">
+                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                            Matches <b><u>{{number_format(@$shop->cosine,3)}}% </u></b> of your query. </p>
+                    </div>
                 </div>
-            </div>
-
-                @endforeach
+            @endforeach
             @else
-                    <p class="alert-warning">No hospitals found according to your query</p>
+                <p class="alert-warning">No Shops found according to your query</p>
             @endif
+        </div>
 
+        <div class="col-md-6">
+            <h3>Shop Near You</h3>
+            @foreach($nearerShopss as $key=>$shop)
+                <div class="panel panel-primary">
+                    <div class="panel-heading text-center">
+                        {{$shop->name}}
+                    </div>
+                    <div class="panel-body text-center">
+                        <table class="table table-bordered text-left">
+
+                            <tbody>
+                            <tr>
+                                <td><i class="fas fa-address-card"></i> Address</td>
+                                <td>{{$shop->address}}</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-phone-volume"></i> Contact NO</td>
+                                <td>{{$shop->phone_number}}</td>
+
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-envelope-open"></i> Email</td>
+                                <td>{{$shop->email}}</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-globe-americas"></i> Websites</td>
+                                <td>{{$shop->website}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <p class="text-success" style="font-family: sans-serif; font-weight: bolder; font-size: 14px;">
+                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                            Less than <b><u>{{@$key}} KM</u></b> away.</p>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </div>
-@endsection
+</div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script>
+</script>
+
+</body>
+
+</html>
